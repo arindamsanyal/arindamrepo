@@ -7,7 +7,9 @@
            http://www.springframework.org/schema/context
            http://www.springframework.org/schema/context/spring-context-3.0.xsd">
         
-<bean id="company" class="com.test.pojos.Company" p:companyName="Manhattan" autowire="byName"/>
+<bean id="company" class="com.test.pojos.Company" p:companyId="78.9" autowire="byType">
+ <property name="companyName" value="8909"/>
+</bean>
 
 <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
 
@@ -20,8 +22,13 @@
 
 
 <bean id="companyAddress" class="com.test.pojos.Address"
-p:city="Bangalore" p:country="India" p:state="karnataka"
+p:city="Bangalore" p:country="India" p:state="karnataka" p:addressId="3729"
 />
+
+
+
+
+
 
 <!-- validators  start -->
 
@@ -31,5 +38,26 @@ p:city="Bangalore" p:country="India" p:state="karnataka"
 <!-- validators end -->        
         
 <context:annotation-config/>        
+
+<!-- Custom Property editors  start -->
+
+<bean class="org.springframework.beans.factory.config.CustomEditorConfigurer">
+
+  <property name="customEditors">
+     
+       <map>
+       
+         <entry key="java.lang.Integer" value-ref="customEditor"/>
+       
+       </map>
+  
+  </property>
+
+</bean> 
+
+ 
+<bean id="customEditor" class="com.test.convert.editors.CustomPropertyEditorConverter"/>
+ 
+<!-- Custom property editors end -->
         
 </beans>        

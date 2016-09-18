@@ -6,6 +6,15 @@ import org.springframework.context.MessageSource;
 import com.test.validate.CompanyValidator;
 
 public class Company {
+	
+	Integer companyId;
+	
+	public Integer getCompanyId() {
+		return companyId;
+	}
+	public void setCompanyId(Integer companyId) {
+		this.companyId = companyId;
+	}
 	@Autowired
 	private CompanyValidator companyValidator;
 
@@ -19,7 +28,7 @@ public class Company {
 		return companyValidator;
 	}
 	String companyName;
-	
+
 	Address companyAddress;
 	public String getCompanyName() {
 		return companyName;
