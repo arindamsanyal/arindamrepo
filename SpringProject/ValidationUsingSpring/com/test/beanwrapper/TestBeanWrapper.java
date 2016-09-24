@@ -21,6 +21,7 @@ public class TestBeanWrapper {
 		
 		BeanWrapper bw = new BeanWrapperImpl(company);
 		
+		
 		System.out.println("Company Name : "+bw.getPropertyValue("companyName"));
 		
 		System.out.println("Company Id : "+bw.getPropertyValue("companyId"));
@@ -33,6 +34,8 @@ public class TestBeanWrapper {
 		System.out.println("Company Address City : "+bw.getPropertyValue("companyAddress.city"));
 		
 		System.out.println("Company Address id : "+bw.getPropertyValue("companyAddress.addressId"));
+       
+		System.out.println("Company Address Date  : "+bw.getPropertyValue("companyAddress.addressDate"));
 		
 		System.out.println("Address Indexed properties : "+bw.getPropertyValue("companyAddress.cities[0]"));
 		

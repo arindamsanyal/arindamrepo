@@ -12,12 +12,12 @@ import java.beans.PropertyEditorSupport;
 public class CustomPropertyEditorConverter extends PropertyEditorSupport{
    
 	
-     @Override
+   /*  @Override
 	public void setAsText(String text){
 		
     	setValue(Integer.valueOf(Double.valueOf(text).intValue()));
 	
-	}
+	}*/
 	
 	
 }

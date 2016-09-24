@@ -1,14 +1,17 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xmlns:p="http://www.springframework.org/schema/p"
+        xmlns:mvc="http://www.springframework.org/schema/mvc"
        xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans 
            http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
            http://www.springframework.org/schema/context
-           http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+           http://www.springframework.org/schema/context/spring-context-3.0.xsd
+           http://www.springframework.org/schema/mvc
+           http://www.springframework.org/schema/mvc/spring-mvc.xsd">
         
-<bean id="company" class="com.test.pojos.Company" p:companyId="78.9" autowire="byType">
- <property name="companyName" value="8909"/>
+<bean id="company" class="com.test.pojos.Company" p:companyId="7" p:phoneNumber="421-313-3131" autowire="byType">
+ <property name="companyName" value="Manhattan"/>
 </bean>
 
 <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
@@ -17,15 +20,12 @@
   
    <array><value>com/test/resources/ErrorDetails</value></array>
   </property>
-
 </bean>
 
 
 <bean id="companyAddress" class="com.test.pojos.Address"
-p:city="Bangalore" p:country="India" p:state="karnataka" p:addressId="3729"
+p:city="Bangalore" p:country="India" p:state="karnataka" p:addressId="37.29" p:addressDate="2016/09/16"
 />
-
-
 
 
 
@@ -59,5 +59,9 @@ p:city="Bangalore" p:country="India" p:state="karnataka" p:addressId="3729"
 <bean id="customEditor" class="com.test.convert.editors.CustomPropertyEditorConverter"/>
  
 <!-- Custom property editors end -->
-        
+
+<!-- Registering the @DateTimeFormat and @NumberFormat annotations using the below configuration start -->
+<!-- <bean
+id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean"/> -->
+<!-- Registering the @DateTimeFormat and @NumberFormat annotations using the below configuration end -->
 </beans>        

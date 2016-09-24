@@ -1,12 +1,17 @@
 package com.test.pojos;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
+import org.springframework.format.annotation.NumberFormat;
+import org.springframework.format.annotation.NumberFormat.Style;
 
 public class Address {
 
@@ -23,13 +28,23 @@ public class Address {
 		citiesMap.put("Bangalore", "02345");
 
 	}
-	
-	Integer addressId;
 
-	public Integer getAddressId() {
+	Double addressId;
+	
+	Date addressDate;
+
+	public Date getAddressDate() {
+		return addressDate;
+	}
+	//@DateTimeFormat(pattern="MM-dd-yyyy",iso=Date)
+	public void setAddressDate(Date addressDate) {
+		this.addressDate = addressDate;
+	}
+	public Double getAddressId() {
 		return addressId;
 	}
-	public void setAddressId(Integer addressId) {
+
+	public void setAddressId(Double addressId) {
 		this.addressId = addressId;
 	}
 	public Map<String, String> getCitiesMap() {
@@ -73,11 +88,12 @@ public class Address {
 	public MessageSource getMessageSource() {
 		return messageSource;
 	}
-
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
-		return "[\n Country : " + country + "\nCity : " + city + "\nState : "
-				+ state + "\n]";
+		return "Address [addressId=" + addressId + ", addressDate="
+				+ addressDate + ", city=" + city + ", country=" + country
+				+ ", state=" + state + "]";
 	}
+
+
 }
