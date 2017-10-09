@@ -7,8 +7,7 @@ import com.test.custom.semaphore.CustomSemaphore;
 
 public class Resource {
 	private static final List<Integer> BUFFER = new ArrayList<>();
-	private static final int MAX_BUFFER_SIZE = 20;
-	private static final int MIN_BUFFER_SIZE = 0;
+	private static final int MAX_BUFFER_SIZE = 10;
 	private volatile static Resource res = null;
 	private final CustomSemaphore resourceManager = new CustomSemaphore(MAX_BUFFER_SIZE);
 
@@ -33,27 +32,30 @@ public class Resource {
 			if (isAdded)
 				System.out.println(Thread.currentThread().getName()
 						+ " produces " + val);
-			
+			BUFFER.notify();
 		}
+		resourceManager.release();
 	}
 
 	public void consume(Integer val) {
-
+		resourceManager.acquire();
 		synchronized (BUFFER) {
-			if (BUFFER.size() == MIN_BUFFER_SIZE) {
+			boolean isRemoved = BUFFER.remove(val);
+			while(!isRemoved){
 				try {
 					BUFFER.wait();
+					isRemoved = BUFFER.remove(val);
 				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+				
 			}
-
-			boolean isRemoved = BUFFER.remove(val);
 			if (isRemoved)
-				System.out.println(Thread.currentThread().getName()
-						+ " consumes " + val);
-			BUFFER.notify();
+				System.out.println(Thread.currentThread().getName()+" consumes : "+val);
+			
 		}
+		resourceManager.release();
 	}
 
 }
