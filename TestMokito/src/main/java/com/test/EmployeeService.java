@@ -29,20 +29,16 @@ public class EmployeeService {
     Employee emp = employeeDao.getEmployeeById(employeeId);
 
     return emp!=null;
-  }
-
-  public boolean getEmployee567(Integer employeeId) throws IllegalAccessException {
+  } public boolean getEmployee567(Integer employeeId) throws IllegalAccessException {
 
     if(employeeId==null || employeeId==0){
-
+      Employee emp = employeeDao.getEmployeeById(employeeId.intValue());
       return false;
     }
     Employee emp = employeeDao.getEmployeeById(employeeId);
 
     return emp!=null;
-  }
-
-  public Employee getEmployee(Long employeeId) throws IllegalAccessException {
+  } public Employee getEmployee(Long employeeId) throws IllegalAccessException {
 
     Employee emp = employeeDao.getEmployeeById(employeeId.intValue());
 
